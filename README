@@ -1,0 +1,22 @@
+This program helps to find repeated strings of digits in Pi (or another saved constant).
+
+I used the python program download_pi.py to download lots of digits from the internet.
+
+These need to be unzipped,
+for FILE in *.zip; do unzip $FILE; done
+
+Then the program can be compiled and run with
+gcc -o pi_repeat.exe -O3 -m64 pi_repeat.c
+
+Run with 
+pi_repeat.exe 10
+where 10 is the number of digits to be searched for.
+
+Constants K and B and the upper limit 15,000,000,000 in the program may need to be tweaked.
+The hash table has 10**K entries.
+The linked list holds B entries.
+The upper limit says how far to search.
+The program reads in sections of the constant and stores into a hash table of linked lists.
+When it has used B slots, it switches to scanning the rest of the constant with the current table.
+If it finds a match, then it prints the temporary best guess and goes back and rechecks all
+shorter sequences to check that this is the first repeat.
